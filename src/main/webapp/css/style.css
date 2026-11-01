@@ -1,0 +1,546 @@
+/* ==============================================
+   CodeQuest - Common Stylesheet
+   Used by all pages for same colors, fonts,
+   buttons, forms and tables.
+   ============================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #121826;
+    color: #e4e7ec;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+a {
+    color: #4dabf7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Navigation Bar ---------- */
+.navbar {
+    background-color: #1b2233;
+    border-bottom: 2px solid #22c55e;
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.logo span {
+    color: #22c55e;
+}
+
+.logo small {
+    font-size: 11px;
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: #cbd2dc;
+    padding: 8px 14px;
+    display: block;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #22c55e;
+    text-decoration: none;
+}
+
+.nav-user {
+    color: #8a94a6;
+    padding: 8px 14px;
+}
+
+/* ---------- Page Layout ---------- */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.narrow {
+    max-width: 420px;
+}
+
+.page-title {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: #8a94a6;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #1b2233;
+    border: 1px solid #2c3548;
+    border-radius: 6px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+}
+
+/* ---------- Home Page ---------- */
+.hero {
+    text-align: center;
+    padding: 60px 20px 30px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    color: #22c55e;
+}
+
+.hero p {
+    color: #a3acbb;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    font-size: 16px;
+}
+
+.steps {
+    list-style: none;
+    counter-reset: step;
+}
+
+.steps li {
+    counter-increment: step;
+    padding: 10px 0 10px 45px;
+    position: relative;
+    border-bottom: 1px solid #2c3548;
+    color: #cbd2dc;
+}
+
+.steps li:last-child {
+    border-bottom: none;
+}
+
+.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #22c55e;
+    color: #121826;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background-color: #22c55e;
+    color: #0f1a12;
+    font-weight: 600;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+/* ---------- Forms ---------- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #a3acbb;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #121826;
+    border: 1px solid #2c3548;
+    border-radius: 4px;
+    color: #e4e7ec;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.checkbox {
+    display: block;
+    color: #a3acbb;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+    color: #8a94a6;
+    font-size: 14px;
+}
+
+/* ---------- Messages ---------- */
+.alert {
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background-color: #3b1d24;
+    border-left: 4px solid #ef4444;
+    color: #fca5a5;
+}
+
+.alert-success {
+    background-color: #173326;
+    border-left: 4px solid #22c55e;
+    color: #86efac;
+}
+
+.alert-info {
+    background-color: #172a3d;
+    border-left: 4px solid #4dabf7;
+    color: #a5d8ff;
+}
+
+/* ---------- Tables ---------- */
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 11px 12px;
+    text-align: left;
+    border-bottom: 1px solid #2c3548;
+}
+
+th {
+    background-color: #232c40;
+    color: #a3acbb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ---------- Labels (category / difficulty) ---------- */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    border: 1px solid;
+}
+
+.badge-easy   { color: #22c55e; border-color: #22c55e; }
+.badge-medium { color: #f59e0b; border-color: #f59e0b; }
+.badge-hard   { color: #ef4444; border-color: #ef4444; }
+.badge-cat    { color: #4dabf7; border-color: #4dabf7; }
+.badge-xp     { color: #e4e7ec; border-color: #5b6578; }
+
+/* ---------- Dashboard ---------- */
+.stat {
+    text-align: center;
+}
+
+.stat .value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+.stat .label {
+    color: #8a94a6;
+    font-size: 13px;
+}
+
+.progress {
+    background-color: #121826;
+    border: 1px solid #2c3548;
+    height: 16px;
+    border-radius: 8px;
+    margin: 10px 0 6px;
+}
+
+.progress .bar {
+    background-color: #22c55e;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.progress-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #8a94a6;
+    font-size: 13px;
+}
+
+/* ---------- Missions ---------- */
+.filters {
+    margin-bottom: 20px;
+}
+
+.filters a {
+    display: inline-block;
+    padding: 5px 14px;
+    margin: 0 4px 6px 0;
+    border: 1px solid #2c3548;
+    border-radius: 4px;
+    color: #cbd2dc;
+    font-size: 14px;
+}
+
+.filters a.active,
+.filters a:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+    text-decoration: none;
+}
+
+.filters .sep {
+    color: #5b6578;
+    margin: 0 8px;
+}
+
+.mission-head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mission-head h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.mission-desc {
+    color: #a3acbb;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.option {
+    padding: 10px;
+    background-color: #121826;
+    border: 1px solid #2c3548;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.option:hover {
+    border-color: #4dabf7;
+}
+
+.status-done {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.status-wrong {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* ---------- Result Page ---------- */
+.result {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.result h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.result.correct {
+    border-top: 4px solid #22c55e;
+}
+
+.result.correct h2 {
+    color: #22c55e;
+}
+
+.result.wrong {
+    border-top: 4px solid #ef4444;
+}
+
+.result.wrong h2 {
+    color: #ef4444;
+}
+
+.result p {
+    color: #a3acbb;
+    margin-bottom: 6px;
+}
+
+.levelup {
+    background-color: #33290f;
+    color: #fbbf24;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 12px 0;
+    font-weight: bold;
+}
+
+/* ---------- Leaderboard ---------- */
+.rank {
+    font-weight: bold;
+}
+
+.rank-1 .rank { color: #fbbf24; }
+.rank-2 .rank { color: #cbd5e1; }
+.rank-3 .rank { color: #d97706; }
+
+.rank-1 td { background-color: #221f17; }
+.rank-2 td { background-color: #1e2230; }
+.rank-3 td { background-color: #221c18; }
+
+.medal {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    color: #121826;
+}
+
+.medal-gold   { background-color: #fbbf24; }
+.medal-silver { background-color: #cbd5e1; }
+.medal-bronze { background-color: #d97706; }
+
+.me td {
+    color: #22c55e;
+}
+
+.empty {
+    text-align: center;
+    color: #8a94a6;
+    padding: 30px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    text-align: center;
+    color: #6b7588;
+    font-size: 13px;
+    padding: 20px;
+    border-top: 1px solid #2c3548;
+    margin-top: 30px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+    .form-row,
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+}

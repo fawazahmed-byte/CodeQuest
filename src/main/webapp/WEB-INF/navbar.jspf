@@ -1,0 +1,54 @@
+<%--
+    Shared navigation bar (Module 12 - Integration)
+    Included in every JSP with:  <%@ include file="/WEB-INF/navbar.jspf" %>
+    The including page must set:  String activePage = "...";
+    and import com.codequest.util.HtmlUtil.
+
+    Shows one of three menus:
+      - admin   (session has adminId)
+      - student (session has userId)
+      - guest   (not logged in)
+--%>
+<%!
+    // Returns ' class="active"' for the link of the current page
+    private String active(String activePage, String linkName) {
+        return linkName.equals(activePage) ? " class=\"active\"" : "";
+    }
+%>
+<%
+    Object navAdminName = (session != null) ? session.getAttribute("adminUsername") : null;
+    Object navUserName = (session != null) ? session.getAttribute("username") : null;
+    boolean navIsAdmin = session != null && session.getAttribute("adminId") != null;
+    boolean navIsStudent = session != null && session.getAttribute("userId") != null;
+%>
+<nav class="navbar">
+<% if (navIsAdmin) { %>
+    <div class="logo">Code<span>Quest</span><small>ADMIN</small></div>
+    <ul class="nav-links">
+        <li><a href="admin-dashboard.jsp"<%= active(activePage, "adminDashboard") %>>Dashboard</a></li>
+        <li><a href="add-question.jsp"<%= active(activePage, "addQuestion") %>>Add Question</a></li>
+        <li><a href="viewQuestions"<%= active(activePage, "viewQuestions") %>>View Questions</a></li>
+        <li><span class="nav-user">Logged in as <%= HtmlUtil.esc(navAdminName) %></span></li>
+        <li><a href="adminLogout">Logout</a></li>
+    </ul>
+<% } else if (navIsStudent) { %>
+    <div class="logo">Code<span>Quest</span></div>
+    <ul class="nav-links">
+        <li><a href="dashboard"<%= active(activePage, "dashboard") %>>Dashboard</a></li>
+        <li><a href="missions"<%= active(activePage, "missions") %>>Missions</a></li>
+        <li><a href="leaderboard.jsp"<%= active(activePage, "leaderboard") %>>Leaderboard</a></li>
+        <li><span class="nav-user">Logged in as <%= HtmlUtil.esc(navUserName) %></span></li>
+        <li><a href="logout">Logout</a></li>
+    </ul>
+<% } else { %>
+    <div class="logo">Code<span>Quest</span></div>
+    <ul class="nav-links">
+        <li><a href="index.html"<%= active(activePage, "home") %>>Home</a></li>
+        <li><a href="missions"<%= active(activePage, "missions") %>>Missions</a></li>
+        <li><a href="leaderboard.jsp"<%= active(activePage, "leaderboard") %>>Leaderboard</a></li>
+        <li><a href="register.jsp"<%= active(activePage, "register") %>>Register</a></li>
+        <li><a href="login.jsp"<%= active(activePage, "login") %>>Student Login</a></li>
+        <li><a href="admin-login.jsp"<%= active(activePage, "adminLogin") %>>Admin Login</a></li>
+    </ul>
+<% } %>
+</nav>

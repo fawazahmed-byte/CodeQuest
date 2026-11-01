@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    CodeQuest - Deployment Descriptor (Module 12 - Integration)
+
+    Shows:
+      - context-params  (read through ServletContext)
+      - init-params     (read through ServletConfig)
+      - filters         (login protection for student and admin pages)
+      - session timeout and welcome file
+-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>CodeQuest</display-name>
+
+    <!-- ===== ServletContext parameters (shared by the whole application) ===== -->
+    <context-param>
+        <param-name>appName</param-name>
+        <param-value>CodeQuest</param-value>
+    </context-param>
+    <context-param>
+        <param-name>xpPerLevel</param-name>
+        <param-value>100</param-value>
+    </context-param>
+
+    <!-- ===== Admin login servlet with a ServletConfig init-param ===== -->
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>com.codequest.servlet.AdminLoginServlet</servlet-class>
+        <init-param>
+            <param-name>dashboardPage</param-name>
+            <param-value>admin-dashboard.jsp</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/adminLogin</url-pattern>
+    </servlet-mapping>
+
+    <!-- ===== Add question servlet with ServletConfig init-params =====
+         load-on-startup makes init() run when the app starts, so the
+         "defaultXp" ServletContext attribute is ready for add-question.jsp -->
+    <servlet>
+        <servlet-name>AddQuestionServlet</servlet-name>
+        <servlet-class>com.codequest.servlet.AddQuestionServlet</servlet-class>
+        <init-param>
+            <param-name>defaultXp</param-name>
+            <param-value>50</param-value>
+        </init-param>
+        <init-param>
+            <param-name>maxXp</param-name>
+            <param-value>500</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddQuestionServlet</servlet-name>
+        <url-pattern>/addQuestion</url-pattern>
+    </servlet-mapping>
+
+    <!-- ===== Student pages: only for logged-in students ===== -->
+    <filter>
+        <filter-name>StudentAuthFilter</filter-name>
+        <filter-class>com.codequest.filter.StudentAuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StudentAuthFilter</filter-name>
+        <url-pattern>/dashboard</url-pattern>
+        <url-pattern>/missions</url-pattern>
+        <url-pattern>/submitAnswer</url-pattern>
+        <url-pattern>/dashboard.jsp</url-pattern>
+        <url-pattern>/missions.jsp</url-pattern>
+        <url-pattern>/mission-result.jsp</url-pattern>
+    </filter-mapping>
+
+    <!-- ===== Admin pages: only for logged-in admins ===== -->
+    <filter>
+        <filter-name>AdminAuthFilter</filter-name>
+        <filter-class>com.codequest.filter.AdminAuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminAuthFilter</filter-name>
+        <url-pattern>/admin-dashboard.jsp</url-pattern>
+        <url-pattern>/add-question.jsp</url-pattern>
+        <url-pattern>/view-questions.jsp</url-pattern>
+        <url-pattern>/addQuestion</url-pattern>
+        <url-pattern>/viewQuestions</url-pattern>
+    </filter-mapping>
+
+    <!-- Session expires after 30 minutes of no activity -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
